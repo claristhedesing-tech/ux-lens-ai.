@@ -1,3 +1,4 @@
 streamlit
 requests
 Pillow
+Add image upload and URL support dependencies
