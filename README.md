@@ -23,7 +23,7 @@ My motivation is to bridge the gap between creative design and inclusive technic
 
 ### Example 2: E-commerce hierarchy audit
 
-![E-commerce visual hierarchy audit](/commerce-full-ux-audit.png)
+![E-commerce visual hierarchy audit](/e-commerce-full-ux-audit.png)
 
 ## Data and AI Techniques
 - **Computer Vision:** To detect UI components (buttons, text fields, icons).
