@@ -19,11 +19,11 @@ My motivation is to bridge the gap between creative design and inclusive technic
 
 ### Example 1: Finance app accessibility audit
 
-![Finance app accessibility audit](/examples/finance-accessibility-audit.png)
+![Finance app accessibility audit](/Examples/finance-full-ux-audit.png)
 
 ### Example 2: E-commerce hierarchy audit
 
-![E-commerce visual hierarchy audit](/examples/ecommerce-hierarchy-audit.png)
+![E-commerce visual hierarchy audit](/Examples/ecommerce-full-ux-audit.png)
 
 ## Data and AI Techniques
 - **Computer Vision:** To detect UI components (buttons, text fields, icons).
