@@ -1,6 +1,6 @@
 # UX Lens AI - Accessibility and Visual Clarity Auditor
 
-![Header Image](/header-image.jpg)
+![Header Image](/header-image.png)
 
 *Building AI course project*
 
@@ -17,7 +17,13 @@ My motivation is to bridge the gap between creative design and inclusive technic
 2. **Analysis:** The AI identifies interactive elements and measures visual properties.
 3. **Feedback:** The tool provides a prioritized list of design suggestions directly on the UI.
 
-![Example](/examples/your_example_image.png)
+### Example 1: Finance app accessibility audit
+
+![Finance app accessibility audit](/examples/finance-accessibility-audit.png)
+
+### Example 2: E-commerce hierarchy audit
+
+![E-commerce visual hierarchy audit](/examples/ecommerce-hierarchy-audit.png)
 
 ## Data and AI Techniques
 - **Computer Vision:** To detect UI components (buttons, text fields, icons).
