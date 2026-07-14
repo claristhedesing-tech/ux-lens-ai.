@@ -1,47 +1,66 @@
-# UX Lens AI - Accessibility and Visual Clarity Auditor
+# UX Lens AI
 
-![Header Image](/header-image.png)
+Building AI course project
 
-*Building AI course project*
+![UX Lens AI Dashboard](/header-image.png)
 
 ## Summary
-**UX Lens AI** is a conceptual tool designed to assist UX/UI designers in identifying common accessibility and usability issues in digital interfaces. It uses AI to analyze screenshots or prototypes, highlighting problems like low contrast, poor visual hierarchy, and ambiguous labeling.
+
+UX Lens AI is an AI-assisted accessibility and visual-clarity reviewer for websites and mobile applications. It analyzes interface screenshots and identifies possible design issues, including low contrast, weak visual hierarchy, small text, unclear calls to action, and inconsistent interface components. The tool is meant to support designers, not replace their professional judgment.
 
 ## Background
-As a designer, checking every single state of a complex interface for accessibility (WCAG) compliance is time-consuming. Issues like small touch targets or insufficient contrast are often missed. 
 
-My motivation is to bridge the gap between creative design and inclusive technical standards, making sure products are accessible to everyone from the start of the design process.
+Designers often need to review many screens and interface states under time pressure. Accessibility and usability problems can be missed, especially in early design stages. These issues can make digital products harder to use for people with visual, cognitive, or motor disabilities.
+
+As a graphic and UX/UI designer, I am interested in a tool that helps identify common visual and usability issues early in the design process. The project focuses on making inclusive design checks faster and easier to integrate into everyday workflows.
 
 ## How is it used?
-1. **Upload:** A designer uploads a screenshot or links a Figma frame.
-2. **Analysis:** The AI identifies interactive elements and measures visual properties.
-3. **Feedback:** The tool provides a prioritized list of design suggestions directly on the UI.
 
-### Example 1: Finance app accessibility audit
+A UX/UI designer uploads a screenshot of a website or mobile app screen. UX Lens AI analyzes the screen and presents a list of possible issues, ordered by priority.
 
-![Finance app accessibility audit](/finance-full-ux-audit.png)
+### Real-world Audit Examples:
 
-### Example 2: E-commerce hierarchy audit
+**1. Finance App Accessibility Audit**
+Testing color contrast, touch targets, and readability in complex data environments.
+![Finance Audit](/finance-full-ux-audit.png)
 
-![E-commerce visual hierarchy audit](/e-commerce-full-ux-audit.png)
+**2. E-commerce Visual Hierarchy Audit**
+Identifying competing calls-to-action and cluttered product information.
+![E-commerce Audit](/e-commerce-full-ux-audit.png)
 
-## Data and AI Techniques
-- **Computer Vision:** To detect UI components (buttons, text fields, icons).
-- **OCR:** To read and analyze microcopy for clarity.
-- **Rule-based Logic & ML:** To compare design properties against WCAG standards and usability heuristics.
+**3. Travel Discovery UX Audit**
+Evaluating text readability over dynamic background imagery and copy clarity.
+*(See header image at the top of this page)*
+
+## Data and AI techniques
+
+The system would use annotated screenshots of websites and mobile applications. Each screenshot would include labels describing visual and accessibility issues.
+
+Possible AI techniques:
+- **Computer Vision:** To detect interface elements such as buttons, fields, text blocks, and navigation.
+- **OCR (Optical Character Recognition):** To extract visible text for analysis.
+- **Classification Models:** To identify possible visual problems and prioritize them.
+- **NLP (Natural Language Processing):** To evaluate whether labels and calls to action are understandable.
+- **Rule-based Logic:** For measurable criteria like WCAG contrast ratios.
 
 ## Prototype
-This repository includes a small original Python script (`contrast_checker.py`) that demonstrates the logic behind one of the tool's core features: **Automatic Contrast Evaluation**. 
 
-You can run it to see how the system calculates the contrast ratio between two colors to ensure readability.
+This repository includes an original functional prototype: `contrast_checker.py`. 
+
+This script replicates the core logic of the UX Lens "Actionable Insights" panel. It calculates color contrast ratios between text and backgrounds, evaluates them against **WCAG 2.1 AA** standards, and generates a prioritized report with severity labels (**HIGH**, **MEDIUM**, **LOW**).
+
+The code includes pre-configured audit tests for the three examples showcased in this project (Finova, Nova Atelier, and Travelo.co).
 
 ## Challenges
-- AI cannot replace human empathy or understand brand-specific aesthetic choices.
-- Designing for diverse cultural contexts or non-standard UI patterns remains a challenge for automated tools.
+
+The tool cannot fully understand a user’s goals, brand strategy, or emotional response to an interface. A visually unusual design is not necessarily bad design. Results should be treated as suggestions for a designer to review, not as final decisions.
 
 ## What next?
-- Developing a Figma plugin integration.
-- Training the model to recognize "dark patterns" in UX.
+
+- **Figma Integration:** Developing a plugin to audit designs directly in the workspace.
+- **Design System Sync:** Comparing interface states for consistency.
+- **Expert Feedback Loop:** Allowing accessibility experts to refine the AI's recommendations.
 
 ## Acknowledgments
-Inspired by the Building AI course and WCAG 2.1 guidelines.
+
+Inspired by the **Web Content Accessibility Guidelines (WCAG)** and the **Building AI** course.
