@@ -1,6 +1,6 @@
 # UX Lens AI - Accessibility and Visual Clarity Auditor
 
-![Header Image](/header-image.jpg
+![Header Image](/header-image.jpg)
 
 *Building AI course project*
 
