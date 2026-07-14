@@ -129,7 +129,7 @@ with right_column:
             f"""
             **Element:** {result["element"]}  
             **Text color:** `{result["text_color"]}`  
-            **Background color:** `{result["bg_color"]}`  
+            **Background color:** `{result["background_color"]}`  
             **WCAG result:** `{result["wcag_level"]}`
             """
         )
