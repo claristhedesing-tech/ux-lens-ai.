@@ -11,20 +11,12 @@ Run:
 import os
 import streamlit as st
 
-# ─────────────────────────────────────────────
-# Configuración
-# ─────────────────────────────────────────────
-
 st.set_page_config(
     page_title="UX Lens AI",
     page_icon="◎",
     layout="wide",
     initial_sidebar_state="expanded",
 )
-
-# ─────────────────────────────────────────────
-# Estilos
-# ─────────────────────────────────────────────
 
 st.markdown(
     """
@@ -51,30 +43,29 @@ st.markdown(
         .breadcrumb {
             color: #7891AE;
             font-size: 12px;
-            padding-top: 6px;
+            padding-top: 7px;
         }
 
         .breadcrumb b {
-            color: #E9F2FF;
-            font-weight: 600;
+            color: #F5F9FF;
         }
 
         .section-label {
             color: #7891AE;
             font-size: 10px;
-            letter-spacing: 1px;
             font-weight: 800;
-            margin-bottom: 4px;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
         }
 
         .badge-blue {
             background: #0D2A4A;
             border: 1px solid #268CFF;
             border-radius: 4px;
-            padding: 3px 7px;
             color: #268CFF;
             font-size: 10px;
             font-weight: 800;
+            padding: 3px 7px;
         }
 
         .result-card {
@@ -89,9 +80,9 @@ st.markdown(
             background: #0A203A;
             border: 1px solid #173451;
             border-radius: 8px;
+            min-height: 70px;
             padding: 10px;
             margin-bottom: 8px;
-            min-height: 72px;
         }
 
         .finding-item {
@@ -103,30 +94,20 @@ st.markdown(
         }
 
         .preview-empty {
+            background: #040D1A;
+            border: 1px dashed #2A4B6D;
+            border-radius: 10px;
+            color: #7891AE;
             min-height: 470px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #7891AE;
-            background: #040D1A;
-            border: 1px dashed #2A4B6D;
-            border-radius: 10px;
             text-align: center;
-        }
-
-        .stButton > button {
-            border-radius: 6px !important;
-            font-size: 12px !important;
-            font-weight: 700 !important;
         }
     </style>
     """,
     unsafe_allow_html=True,
 )
-
-# ─────────────────────────────────────────────
-# Sidebar
-# ─────────────────────────────────────────────
 
 with st.sidebar:
     st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
@@ -137,20 +118,20 @@ with st.sidebar:
         st.markdown(
             """
             <div style="
-                width:38px;
-                height:38px;
-                display:flex;
-                justify-content:center;
-                align-items:center;
                 background:#1A3A5C;
                 border-radius:8px;
+                color:#F5F9FF;
                 font-size:20px;
+                height:38px;
+                line-height:38px;
+                text-align:center;
+                width:38px;
             ">△</div>
             """,
             unsafe_allow_html=True,
         )
 
-    st.markdown("<div style='height:24px'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:25px'></div>", unsafe_allow_html=True)
 
     st.markdown(
         """
@@ -163,18 +144,13 @@ with st.sidebar:
         unsafe_allow_html=True,
     )
 
-# ─────────────────────────────────────────────
-# Header
-# ─────────────────────────────────────────────
-
 header_left, header_right = st.columns([3, 1.4])
 
 with header_left:
     st.markdown(
         """
         <div class="breadcrumb">
-            <b>UX LENS</b>
-            &nbsp;›&nbsp; Projects
+            <b>UX LENS</b> &nbsp;›&nbsp; Projects
             &nbsp;›&nbsp; NOVA ATELIER Page Web
             &nbsp;›&nbsp; <b>Accessibility Audit</b>
         </div>
@@ -187,15 +163,7 @@ with header_right:
 
     with status_col:
         st.markdown(
-            """
-            <div style="
-                color:#22C55E;
-                font-size:11px;
-                font-weight:700;
-                padding-top:8px;
-                white-space:nowrap;
-            ">● Scan complete</div>
-            """,
+            "<div style='color:#22C55E;font-size:11px;font-weight:700;padding-top:8px;'>● Scan complete</div>",
             unsafe_allow_html=True,
         )
 
@@ -206,10 +174,6 @@ with header_right:
         st.button("Share", type="primary", use_container_width=True)
 
 st.divider()
-
-# ─────────────────────────────────────────────
-# Layout principal: preview + resultados
-# ─────────────────────────────────────────────
 
 col_preview, col_results = st.columns([2.5, 1], gap="medium")
 
@@ -312,7 +276,6 @@ with col_results:
             """,
             unsafe_allow_html=True,
         )
-
         st.markdown(
             """
             <div class="metric-box">
@@ -333,7 +296,6 @@ with col_results:
             """,
             unsafe_allow_html=True,
         )
-
         st.markdown(
             """
             <div class="metric-box">
@@ -351,14 +313,14 @@ with col_results:
                 Actionable Insights
             </span>
             <span style="
-                color:#268CFF;
                 background:#0D2A4A;
                 border:1px solid #268CFF;
                 border-radius:10px;
-                padding:2px 7px;
+                color:#268CFF;
                 font-size:10px;
                 font-weight:800;
                 margin-left:6px;
+                padding:2px 7px;
             ">2 items</span>
         </div>
         """,
@@ -394,12 +356,12 @@ with col_results:
                             {description}
                         </div>
                         <span style="
-                            color:{color};
                             border:1px solid {color};
                             border-radius:10px;
-                            padding:2px 6px;
+                            color:{color};
                             font-size:9px;
                             font-weight:800;
+                            padding:2px 6px;
                         ">{severity}</span>
                     </div>
                 </div>
