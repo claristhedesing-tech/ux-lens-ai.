@@ -1,168 +1,117 @@
 # UX Lens AI
 
-![Pantalla principal de UX Lens AI](assets/header-image.png)
+![UX Lens AI main screen](assets/header-image.png)
 
-## Tu idea en pocas palabras
+## Your idea in a nutshell
 
-**UX Lens AI** es una herramienta asistida por inteligencia artificial que revisa capturas de pantalla de sitios web y aplicaciones móviles para detectar posibles problemas de accesibilidad, claridad visual y experiencia de usuario.
+**UX Lens AI** is an AI-assisted tool that reviews screenshots of websites and mobile applications to detect potential issues in accessibility, visual clarity, and user experience.
 
-La herramienta identifica elementos como contraste insuficiente, texto pequeño, jerarquía visual débil, llamadas a la acción poco claras, componentes inconsistentes y posibles puntos de fricción en una interfaz. UX Lens AI está diseñado para apoyar el trabajo de diseñadores y equipos de producto, no para reemplazar su criterio profesional.
+The tool identifies elements such as insufficient contrast, small text, weak visual hierarchy, unclear calls to action, inconsistent components, and possible friction points within an interface. UX Lens AI is designed to support the work of designers and product teams, not to replace their professional judgment.
 
-## Antecedentes
+## Background
 
-Una interfaz puede verse atractiva y, aun así, ser difícil de usar. Problemas como botones poco visibles, textos con bajo contraste, demasiadas acciones compitiendo entre sí o información importante mal organizada son frecuentes en productos digitales.
+An interface can look attractive and still be difficult to use. Issues like poorly visible buttons, low-contrast text, too many competing actions, or poorly organized important information are frequent in digital products.
 
-Estos problemas pueden afectar a cualquier persona, pero tienen un impacto mayor en usuarios con discapacidad visual, personas mayores, personas que usan pantallas pequeñas o usuarios que navegan en condiciones de baja iluminación.
+These problems can affect anyone, but they have a greater impact on users with visual impairments, the elderly, people using small screens, or users navigating in low-light conditions.
 
-La motivación detrás de UX Lens AI es hacer que las revisiones de UX y accesibilidad sean más rápidas y accesibles. Muchas veces, los equipos no tienen tiempo o recursos para realizar una auditoría exhaustiva en cada etapa de diseño. Esta herramienta busca ofrecer una primera revisión visual con observaciones accionables para ayudar a detectar problemas antes de que lleguen a usuarios reales.
+The motivation behind UX Lens AI is to make UX and accessibility reviews faster and more accessible. Often, teams do not have the time or resources to perform an exhaustive audit at every design stage. This tool aims to offer an initial visual review with actionable observations to help detect issues before they reach real users.
 
-Este tema es importante porque una buena experiencia de usuario no consiste únicamente en que una página se vea bien: también debe ser clara, inclusiva, comprensible y fácil de utilizar.
+This topic is important because a good user experience is not just about a page looking good—it must also be clear, inclusive, understandable, and easy to use.
 
-## Datos y técnicas de IA
+## AI Data and Techniques
 
-UX Lens AI trabaja principalmente con imágenes de interfaces, como capturas de pantalla de páginas web, aplicaciones móviles o diseños digitales.
+UX Lens AI primarily works with interface images, such as screenshots of web pages, mobile apps, or digital designs.
 
-Los datos de entrada pueden incluir:
+Input data may include:
 
-- Capturas de pantalla de sitios web.
-- Capturas de aplicaciones móviles.
-- Diseños exportados desde herramientas como Figma.
-- Información adicional sobre el tipo de auditoría que se desea realizar.
+- Website screenshots.
+- Mobile application screenshots.
+- Designs exported from tools like Figma.
+- Additional information about the type of audit to be performed.
 
-La herramienta puede enfocarse en diferentes aspectos de una interfaz:
+The tool can focus on different aspects of an interface:
 
-- Jerarquía visual.
-- Accesibilidad.
-- Navegación.
-- Claridad del contenido.
-- Experiencia de conversión.
+- Visual hierarchy.
+- Accessibility.
+- Navigation.
+- Content clarity.
+- Conversion experience.
 
-Para analizar las imágenes, UX Lens AI puede utilizar técnicas de inteligencia artificial y visión por computador, tales como:
+To analyze the images, UX Lens AI utilizes artificial intelligence and computer vision techniques, such as:
 
-- **Modelos multimodales:** para interpretar elementos visuales y textuales presentes en una interfaz.
-- **Reconocimiento óptico de caracteres (OCR):** para detectar textos, tamaños de letra, etiquetas y llamados a la acción.
-- **Análisis de contraste:** para identificar combinaciones de colores que podrían dificultar la lectura.
-- **Detección de componentes visuales:** para reconocer botones, tarjetas, barras de navegación, formularios y otros elementos de interfaz.
-- **Modelos de lenguaje:** para transformar los hallazgos técnicos en recomendaciones claras y priorizadas para diseñadores.
+- **Multimodal Models:** to interpret visual and textual elements present in an interface.
+- **Optical Character Recognition (OCR):** to detect text, font sizes, labels, and calls to action.
+- **Contrast Analysis:** to identify color combinations that could hinder readability.
+- **Visual Component Detection:** to recognize buttons, cards, navigation bars, forms, and other interface elements.
+- **Language Models:** to transform technical findings into clear, prioritized recommendations for designers.
 
-La calidad del análisis depende de la calidad de la captura de pantalla. Una imagen borrosa, incompleta o con baja resolución puede limitar la detección de textos, colores y componentes.
+The quality of the analysis depends on the quality of the screenshot. A blurry, incomplete, or low-resolution image may limit the detection of text, colors, and components.
 
-## ¿Cómo se utiliza?
+## How is it used?
 
-UX Lens AI está pensado para diseñadores UX/UI, desarrolladores frontend, equipos de producto, agencias digitales y estudiantes que desean revisar una interfaz antes de publicarla o durante su proceso de mejora.
+UX Lens AI is intended for UX/UI designers, frontend developers, product teams, digital agencies, and students who wish to review an interface before its publication or during its improvement process.
 
-El flujo de uso es el siguiente:
+The workflow is as follows:
 
-1. El usuario carga una captura de pantalla, una URL o un diseño.
-2. Selecciona el enfoque de la auditoría, por ejemplo: accesibilidad, jerarquía visual, navegación o conversión.
-3. UX Lens AI analiza la interfaz y destaca áreas que podrían generar problemas.
-4. La herramienta muestra una puntuación general y recomendaciones priorizadas según su impacto.
-5. El diseñador revisa las sugerencias y decide cuáles aplicar según el contexto del producto y las necesidades de sus usuarios.
+1. The user uploads a screenshot, a URL, or a design.
+2. Selects the audit focus, for example: accessibility, visual hierarchy, navigation, or conversion.
+3. UX Lens AI analyzes the interface and highlights areas that could cause problems.
+4. The tool displays an overall score and prioritized recommendations based on their impact.
+5. The designer reviews the suggestions and decides which ones to apply based on the product context and user needs.
 
-Las personas afectadas por esta solución incluyen:
+The people affected by this solution include:
 
-- **Diseñadores y desarrolladores**, que pueden detectar problemas con mayor rapidez.
-- **Equipos de producto**, que pueden priorizar mejoras de usabilidad.
-- **Usuarios finales**, que se benefician de interfaces más claras y fáciles de utilizar.
-- **Personas con necesidades de accesibilidad**, que pueden encontrar menos barreras al navegar por productos digitales.
+- **Designers and developers**, who can detect issues more quickly.
+- **Product teams**, who can prioritize usability improvements.
+- **End users**, who benefit from clearer and easier-to-use interfaces.
+- **People with accessibility needs**, who may face fewer barriers when navigating digital products.
 
-## Ejemplos de auditoría
+## Audit Examples
 
-### 1. Auditoría de e-commerce
+### 1. E-commerce Audit
 
-En este ejemplo, UX Lens AI analiza la página principal de una tienda de moda llamada **Nova Atelier**.
+In this example, UX Lens AI analyzes the home page of a fashion store called **Nova Atelier**.
 
-![Auditoría de e-commerce](assets/e-commerce-audit.png)
+![E-commerce Audit](assets/e-commerce-audit.png)
 
-La auditoría identifica que varias llamadas a la acción del hero principal compiten por la misma atención visual. Botones como “Shop Women”, “Shop Men” y “Explore Collection” tienen una jerarquía similar, lo cual puede dificultar que el usuario sepa cuál es la acción principal.
+The audit identifies that several calls to action in the main hero section compete for the same visual attention. Buttons such as “Shop Women,” “Shop Men,” and “Explore Collection” have a similar hierarchy, which can make it difficult for the user to know which the primary action is.
 
-**Hallazgos principales:**
+**Key Findings:**
 
-- Falta de una llamada a la acción principal claramente priorizada.
-- Baja visibilidad del enlace “Shop now”.
-- Etiquetas y badges de productos que compiten con los nombres y precios.
-- Elementos secundarios que pueden interrumpir el flujo de navegación.
+- Lack of a clearly prioritized primary call to action.
+- Low visibility of the “Shop now” link.
+- Product labels and badges that compete with names and prices.
+- Secondary elements that may interrupt the navigation flow.
 
-**Posible recomendación:**
+**Possible Recommendation:**
 
-Definir una acción principal en la sección hero y reducir el peso visual de las acciones secundarias para guiar mejor la decisión del usuario.
+Define a primary action in the hero section and reduce the visual weight of secondary actions to better guide the user's decision.
 
-### 2. Auditoría de una aplicación financiera
+### 2. Finance Application Audit
 
-Este ejemplo muestra la auditoría de **Finova**, una aplicación móvil de banca y finanzas personales.
+This example shows the audit of **Finova**, a mobile banking and personal finance application.
 
-![Auditoría de aplicación financiera](assets/finance-audit.png)
+![Financial Application Audit](assets/finance-audit.png)
 
-En una aplicación financiera, la claridad y la accesibilidad son especialmente importantes porque el usuario necesita interpretar información sensible, como saldos, transacciones y acciones de pago.
+In a financial application, clarity and accessibility are especially critical because the user needs to interpret sensitive information such as balances, transactions, and payment actions.
 
-**Hallazgos principales:**
+**Key Findings:**
 
-- Contraste insuficiente en el botón “View details”.
-- Texto secundario con baja legibilidad sobre fondos claros.
-- Objetivos táctiles pequeños en algunas acciones importantes.
-- Contraste mejorable en gráficos de gastos mensuales.
+- Insufficient contrast on the “View details” button.
+- Secondary text with low readability on light backgrounds.
+- Small touch targets on some important actions.
+- Improveable contrast in monthly spending charts.
 
-**Posible recomendación:**
+**Possible Recommendation:**
 
-Aumentar el contraste entre el texto y los fondos, especialmente en botones y contenido financiero importante. También se recomienda ampliar las áreas táctiles para facilitar el uso desde dispositivos móviles.
+Increase the contrast between text and backgrounds, especially on buttons and important financial content. It is also recommended to enlarge touch areas to facilitate mobile use.
 
-### 3. Auditoría de una página de viajes
+### 3. Travel Page Audit
 
-Este ejemplo analiza una página de descubrimiento de viajes llamada **Travelo.co**.
+This example analyzes a travel discovery page called **Travelo.co**.
 
-![Auditoría de página de viajes](assets/travel-audit.png)
+![Travel Page Audit](assets/travel-audit.png)
 
-La página utiliza imágenes atractivas y una estética visual fuerte, pero UX Lens AI detecta algunos elementos que pueden afectar la comprensión y la conversión.
+The page uses attractive imagery and a strong visual aesthetic, but UX Lens AI detects some elements that may affect comprehension and conversion.
 
-**Hallazgos principales:**
-
-- El texto principal contiene una palabra poco clara: “Traroversions”.
-- No existe una llamada a la acción principal claramente definida.
-- Algunos elementos de navegación tienen contraste insuficiente.
-- Las tarjetas de destinos y el formulario de suscripción podrían organizarse con una jerarquía más clara.
-
-**Posible recomendación:**
-
-Reemplazar textos ambiguos por mensajes claros y orientados a la acción, establecer un CTA principal y mejorar el contraste de la navegación para facilitar la lectura.
-
-## Desafíos
-
-UX Lens AI no resuelve todos los problemas de diseño o accesibilidad. Sus resultados deben interpretarse como recomendaciones iniciales y no como una auditoría definitiva.
-
-Algunas limitaciones del proyecto son:
-
-- La herramienta no puede comprender por completo el contexto de negocio, los objetivos de una marca o las necesidades específicas de cada usuario.
-- Una captura de pantalla no permite evaluar todas las interacciones, animaciones, estados de error o comportamientos dinámicos de una aplicación.
-- El análisis de contraste visual no sustituye una evaluación completa de accesibilidad realizada con usuarios reales y herramientas especializadas.
-- Las recomendaciones generadas por IA pueden requerir revisión humana para evitar conclusiones incorrectas o poco relevantes.
-- La herramienta no reemplaza pruebas de usabilidad, investigación con usuarios ni el criterio de diseñadores profesionales.
-- La calidad de los resultados depende de la resolución, el contenido y la visibilidad de los elementos dentro de la imagen analizada.
-
-## ¿Qué sigue?
-
-UX Lens AI podría crecer en el futuro con nuevas funciones como:
-
-- Análisis directo de páginas web mediante URL.
-- Integración con Figma para revisar diseños antes de su desarrollo.
-- Comparación entre diferentes versiones de una misma interfaz.
-- Generación de informes exportables para equipos de diseño y producto.
-- Recomendaciones basadas en las pautas WCAG.
-- Evaluación de interfaces en diferentes tamaños de pantalla.
-- Detección de problemas en flujos completos, no solo en una captura de pantalla.
-- Priorización de problemas según impacto, esfuerzo de implementación y riesgo de accesibilidad.
-- Pruebas asistidas con distintos perfiles de usuarios y necesidades de accesibilidad.
-
-El objetivo a largo plazo es convertir UX Lens AI en un asistente de diseño que ayude a los equipos a crear productos digitales más inclusivos, claros y fáciles de usar.
-
-## Agradecimientos
-
-Este proyecto se inspira en el trabajo de la comunidad de diseño UX/UI, accesibilidad web y diseño inclusivo.
-
-Agradecemos especialmente a:
-
-- Las **Web Content Accessibility Guidelines (WCAG)** del W3C, que sirven como referencia para comprender buenas prácticas de accesibilidad digital.
-- Diseñadores, desarrolladores y especialistas en accesibilidad que promueven productos digitales más inclusivos.
-- Las herramientas y comunidades de diseño como Figma, que facilitan la creación y revisión de interfaces.
-- Los recursos de código abierto, documentación técnica y ejemplos educativos utilizados durante la investigación y desarrollo del proyecto.
-
-UX Lens AI fue creado con el propósito de apoyar el criterio humano y fomentar mejores prácticas de accesibilidad y experiencia de usuario.
+Key Finding
