@@ -590,4 +590,60 @@ with preview_col:
                         <span class="live-badge">LIVE AUDIT</span>
                     </span>
                     <div class="workspace-tags">
-                        Desktop web &nbsp;•&nbsp; 1440 px viewport &nbsp;•&nbsp; Visual hierarchy &
+                        Desktop web &nbsp;•&nbsp; 1440 px viewport &nbsp;•&nbsp; Visual hierarchy &nbsp;•&nbsp; 5 issues found
+                    </div>
+                </div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # Selección de fuente (URL o Imagen)
+    source_type = st.radio(
+        "",
+        ["Screenshot", "Website URL"],
+        horizontal=True,
+        label_visibility="collapsed",
+    )
+    st.session_state.source_type = source_type
+
+    if source_type == "Screenshot":
+        uploaded_file = st.file_uploader("", type=["png", "jpg", "jpeg", "webp"], label_visibility="collapsed")
+    else:
+        website_url = st.text_input("", placeholder="https://your-website.com", label_visibility="collapsed")
+
+    # Cuerpo del Preview
+    st.markdown('<div class="preview-body">', unsafe_allow_html=True)
+    st.markdown(
+        """
+        <div class="empty-state">
+            <div class="empty-icon">◈</div>
+            <div class="empty-title">Your interface preview will appear here</div>
+            <p class="empty-desc">Upload a screenshot or switch to Website URL to audit a live page.</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.markdown("<​/div>", unsafe_allow_html=True)
+
+# --- Columna de Resultados (Derecha) ---
+with results_col:
+    st.markdown(
+        """
+        <div class="results-panel">
+            <div class="panel-label">UX Audit Results</div>
+            <div class="panel-title">Nova Atelier</div>
+            <div style="color:#4A6388;font-size:11px;text-align:center;padding:20px 0;">
+                No issues detected yet.<br>Run an audit to populate findings.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    
+    if st.button("Start UX Audit", type="primary", use_container_width=True):
+        st.session_state.audit_requested = True
+
+if st.session_state.audit_requested:
+    st.success("Audit request registered. Connect an AI engine to see real findings.")
