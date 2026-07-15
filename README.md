@@ -17,18 +17,21 @@ To demonstrate the capabilities of UX Lens AI, here are three actual audit resul
 Analyzes the purchase flow, button visibility, and information density.
 - **Key Insight:** The "Add to Cart" button lacked sufficient contrast against the background.
 - **Recommendation:** Increase button saturation and add a subtle drop shadow to improve affordance.
+
 ![E-commerce Audit](assets/e-commerce-audit.png)
 
 #### 2. Finance Dashboard
 Evaluates data visualization clarity and navigation for complex interfaces.
 - **Key Insight:** Primary navigation items were too small for touch targets.
 - **Recommendation:** Increase navigation item height to 48px and improve spacing between icons.
+
 ![Finance Audit](assets/finance-audit.png)
 
 #### 3. Travel Booking Landing Page
 Checks for visual hierarchy and conversion-focused design.
 - **Key Insight:** The hero section had competing calls to action.
 - **Recommendation:** Use a primary button for the main booking flow and a ghost button for secondary actions.
+
 ![Travel Audit](assets/travel-audit.png)
 
 ---
@@ -40,46 +43,27 @@ Checks for visual hierarchy and conversion-focused design.
 - **Version Control:** GitHub.
 
 ### Project Structure
-```text
-src/
-├── App.tsx          # Main application logic and UI components
-├── main.tsx         # Entry point
-└── assets/          # Project images and documentation visuals
+![Project Structure](assets/project-structure.png)
 
 ### Core Interface Logic
 The following example shows how the application validates the selected source before enabling the Start UX Audit button:
 
-const canStart =
-  (activeTab === "upload" && uploadedFile !== null) ||
-  (activeTab === "url" && isUrlValid(urlValue)) ||
-  (activeTab === "figma" && figmaValue.trim().length > 0);
+![Validation Logic](assets/logic-validation.png)
 
 The user can also choose the areas that should be prioritized during the audit:
 
-const FOCUS_CHIPS = [
-  "Visual hierarchy",
-  "Accessibility",
-  "Navigation",
-  "Content clarity",
-  "Conversion UX",
-];
+![Focus Logic](assets/logic-focus.png)
 
-const toggleFocus = (chip: string) => {
-  setSelectedFocus((prev) =>
-    prev.includes(chip)
-      ? prev.filter((currentChip) => currentChip !== chip)
-      : [...prev, chip]
-  );
-};
+---
 
 ### Challenges
-Visual Hierarchy Mapping: Developing an algorithm that accurately identifies the most important elements on a screen.
-Heuristic Automation: Translating traditional UX heuristics into machine-readable rules for the AI backend.
+- **Visual Hierarchy Mapping:** Developing an algorithm that accurately identifies the most important elements on a screen.
+- **Heuristic Automation:** Translating traditional UX heuristics into machine-readable rules for the AI backend.
 
 ### What's next?
-Connect the React interface to an AI-powered backend that analyzes screenshots and generates audit findings.
-Implement a "History" section to track audit improvements over time.
-Develop a Chrome extension for real-time live site audits.
+- **Backend Integration:** Connect the React interface to an AI-powered backend that analyzes screenshots and generates audit findings.
+- **History Tracking:** Implement a "History" section to track audit improvements over time.
+- **Browser Extension:** Develop a Chrome extension for real-time live site audits.
 
 ### Acknowledgments
 Thanks to the UX design community for providing the heuristic frameworks that power the logic of this tool.
