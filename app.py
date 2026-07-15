@@ -62,6 +62,191 @@ if "audit_source" not in st.session_state:
 # ═════════════════════════════════════════════
 st.markdown(
     """
+    /* Layout limpio de la auditoría */
+.section-heading {
+    margin: 4px 0 14px;
+}
+
+.eyebrow {
+    color: #639AF0;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.1px;
+    margin-bottom: 6px;
+}
+
+.section-title {
+    color: #F3F7FF;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.section-description {
+    color: #7890AE;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+.preview-card-header {
+    align-items: center;
+    background: #0E1521;
+    border: 1px solid #1B2A42;
+    border-bottom: 0;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding: 14px 16px;
+}
+
+.preview-card-title {
+    color: #EAF1FC;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.preview-card-meta {
+    color: #67809F;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+.source-badge {
+    background: #112A4B;
+    border: 1px solid #244F82;
+    border-radius: 999px;
+    color: #85B9FF;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 9px;
+}
+
+.preview-placeholder {
+    align-items: center;
+    background:
+        radial-gradient(
+            ellipse at top,
+            rgba(37, 99, 235, 0.13),
+            transparent 50%
+        ),
+        #080D17;
+    border: 1px solid #1B2A42;
+    border-radius: 0 0 10px 10px;
+    color: #7390B1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 410px;
+    padding: 36px;
+    text-align: center;
+}
+
+.placeholder-icon {
+    align-items: center;
+    background: #102443;
+    border: 1px solid #27558D;
+    border-radius: 16px;
+    color: #74AEFF;
+    display: flex;
+    font-size: 28px;
+    height: 64px;
+    justify-content: center;
+    margin-bottom: 18px;
+    width: 64px;
+}
+
+.placeholder-title {
+    color: #DCE9FA;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.preview-placeholder p {
+    font-size: 12px;
+    line-height: 1.55;
+    margin: 0;
+    max-width: 340px;
+}
+
+.results-card {
+    background: #0E1521;
+    border: 1px solid #1B2A42;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    padding: 18px;
+}
+
+.results-title {
+    color: #F2F6FD;
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+}
+
+.results-description {
+    color: #7890AE;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.audit-state {
+    align-items: flex-start;
+    background: rgba(34, 197, 94, 0.10);
+    border: 1px solid rgba(74, 222, 128, 0.25);
+    border-radius: 8px;
+    color: #B3F2C8;
+    display: flex;
+    font-size: 12px;
+    gap: 10px;
+    line-height: 1.4;
+    margin-top: 14px;
+    padding: 12px;
+}
+
+.audit-state-icon {
+    align-items: center;
+    background: #1A9B53;
+    border-radius: 50%;
+    color: #FFFFFF;
+    display: flex;
+    flex: 0 0 auto;
+    font-size: 11px;
+    font-weight: 800;
+    height: 18px;
+    justify-content: center;
+    width: 18px;
+}
+
+.audit-state p {
+    color: #83C99B;
+    margin: 3px 0 0;
+}
+
+/* Los botones secundarios no deben verse como botones blancos nativos */
+div[data-testid="stButton"] > button[kind="secondary"] {
+    background-color: #101C2E !important;
+    border: 1px solid #2A4B73 !important;
+    color: #B8CDE8 !important;
+}
+
+div[data-testid="stButton"] > button[kind="secondary"]:hover {
+    background-color: #172B46 !important;
+    border-color: #5B9DFA !important;
+    color: #FFFFFF !important;
+}
+
+/* Ajusta el espacio bajo radio y uploader */
+[data-testid="stRadio"] {
+    margin: 4px 0 10px;
+}
+
+[data-testid="stFileUploader"] {
+    margin-bottom: 0;
+}
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
@@ -482,18 +667,36 @@ st.markdown(
 # ═════════════════════════════════════════════
 # Main Layout
 # ═════════════════════════════════════════════
-preview_col, results_col = st.columns([3.2, 1], gap="medium")
+preview_col, results_col = st.columns([2.2, 1], gap="large")
 
 with preview_col:
-    st.radio(
-        "Audit source",
+    st.markdown(
+        """
+        <div class="section-heading">
+            <div>
+                <div class="eyebrow">AUDIT SOURCE</div>
+                <div class="section-title">Add an interface to analyse</div>
+                <div class="section-description">
+                    Upload a screenshot or provide a public website URL.
+                </div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    source_type = st.radio(
+        "Source type",
         ["Screenshot", "Website URL"],
         horizontal=True,
         label_visibility="collapsed",
         key="source_type",
     )
 
-    if st.session_state.source_type == "Screenshot":
+    uploaded_file = None
+    website_url = ""
+
+    if source_type == "Screenshot":
         uploaded_file = st.file_uploader(
             "Upload screenshot",
             type=["png", "jpg", "jpeg", "webp"],
@@ -503,10 +706,10 @@ with preview_col:
 
         if uploaded_file is not None:
             project_name = uploaded_file.name.rsplit(".", 1)[0]
-            source_description = "Screenshot uploaded"
+            source_description = "Screenshot ready for analysis"
         else:
             project_name = "Untitled audit"
-            source_description = "Waiting for a screenshot"
+            source_description = "No screenshot uploaded yet"
 
     else:
         website_url = st.text_input(
@@ -518,24 +721,25 @@ with preview_col:
 
         if website_url and valid_url(website_url):
             project_name = urlparse(website_url).netloc.replace("www.", "")
-            source_description = "Live website URL"
+            source_description = "Website URL ready for analysis"
         elif website_url:
             project_name = "Untitled audit"
-            source_description = "Enter a valid URL starting with https://"
+            source_description = "Enter a complete URL starting with https://"
         else:
             project_name = "Untitled audit"
-            source_description = "Waiting for a website URL"
+            source_description = "No website URL entered yet"
 
     safe_project_name = escape(project_name)
     safe_source_description = escape(source_description)
 
     st.markdown(
         f"""
-        <div class="workspace-frame">
-            <div class="workspace-header">
-                <div class="workspace-title">{safe_project_name}</div>
-                <div class="workspace-tags">{safe_source_description}</div>
+        <div class="preview-card-header">
+            <div>
+                <div class="preview-card-title">{safe_project_name}</div>
+                <div class="preview-card-meta">{safe_source_description}</div>
             </div>
+            <span class="source-badge">{escape(source_type)}</span>
         </div>
         """,
         unsafe_allow_html=True,
@@ -544,24 +748,85 @@ with preview_col:
     if uploaded_file is not None:
         st.image(
             uploaded_file,
-            caption=f"Preview: {project_name}",
+            caption=f"Preview · {project_name}",
             use_container_width=True,
         )
     else:
         st.markdown(
             """
-            <div class="preview-body">
-                <div class="empty-state">
-                    <div class="empty-icon">◈</div>
-                    <div class="empty-title">Your interface preview will appear here</div>
-                    <p class="empty-desc">
-                        Upload a screenshot or switch to Website URL to audit a live page.
-                    </p>
+            <div class="preview-placeholder">
+                <div class="placeholder-icon">◈</div>
+                <div class="placeholder-title">Your interface preview will appear here</div>
+                <p>
+                    Upload a screenshot to view it here, or use a URL to start
+                    an audit of a public website.
+                </p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+
+# ═════════════════════════════════════════════
+# Results / Action Panel
+# ═════════════════════════════════════════════
+has_valid_source = uploaded_file is not None or valid_url(website_url)
+
+with results_col:
+    st.markdown(
+        f"""
+        <div class="results-card">
+            <div class="eyebrow">UX AUDIT</div>
+            <div class="results-title">{safe_project_name}</div>
+            <div class="results-description">
+                {safe_source_description}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    start_audit = st.button(
+        "Start UX Audit",
+        type="primary",
+        use_container_width=True,
+        disabled=not has_valid_source,
+        key="start_audit",
+    )
+
+    if not has_valid_source:
+        st.caption("Add a screenshot or a valid public URL to enable the audit.")
+
+    if start_audit:
+        st.session_state.audit_requested = True
+        st.session_state.audit_name = project_name
+        st.session_state.audit_source = (
+            uploaded_file.name if uploaded_file is not None else website_url
+        )
+
+    if st.session_state.audit_requested:
+        saved_name = escape(st.session_state.audit_name or "Current audit")
+
+        st.markdown(
+            f"""
+            <div class="audit-state">
+                <div class="audit-state-icon">✓</div>
+                <div>
+                    <strong>Audit created</strong>
+                    <p>{saved_name} is ready for analysis.</p>
                 </div>
             </div>
             """,
             unsafe_allow_html=True,
         )
+
+        if st.button(
+            "Reset audit",
+            use_container_width=True,
+            key="reset_audit",
+        ):
+            reset_audit()
+            st.rerun()
 
 
 # ═════════════════════════════════════════════
