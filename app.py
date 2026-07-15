@@ -416,32 +416,40 @@ st.markdown(
             margin-left: 16px;
         }
 
-        /* Buttons override */
-        .stButton > button {
-            border-radius: 6px !important;
-            font-size: 11px !important;
-            font-weight: 700 !important;
-            min-height: 34px !important;
-        }
+        /* Botones Streamlit */
+        div[data-testid="stButton"] > button {
+        min-height: 34px !important;
+        border-radius: 6px !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
 
-        .stButton > button[kind="primary"] {
-            background: #2563EB !important;
-            border-color: #2563EB !important;
-        }
+/* Botón secundario: Export report */
+div[data-testid="stButton"] > button[kind="secondary"] {
+    background: #0C1322 !important;
+    border: 1px solid #1E3A5F !important;
+    color: #A8BED8 !important;
+}
 
-        .stButton > button[kind="primary"]:hover {
-            background: #3B82F6 !important;
-            border-color: #3B82F6 !important;
-        }
+div[data-testid="stButton"] > button[kind="secondary"]:hover {
+    background: #0F1F36 !important;
+    border-color: #4A9EFF !important;
+    color: #E8F1FF !important;
+}
 
-        /* Inputs */
-        .stTextInput input {
-            background: #0A1120 !important;
-            border: 1px solid #1A3355 !important;
-            border-radius: 6px !important;
-            color: #E2EBF8 !important;
-            font-size: 12px !important;
-        }
+/* Botón principal: Share / Start UX Audit */
+div[data-testid="stButton"] > button[kind="primary"] {
+    background: #2563EB !important;
+    border: 1px solid #2563EB !important;
+    color: #FFFFFF !important;
+}
+
+div[data-testid="stButton"] > button[kind="primary"]:hover {
+    background: #3B82F6 !important;
+    border-color: #3B82F6 !important;
+    color: #FFFFFF !important;
+}
 
         .stRadio label {
             color: #A8BED8 !important;
@@ -580,25 +588,27 @@ preview_col, results_col = st.columns([3.2, 1], gap="medium")
 
 # ── Preview Column ──
 with preview_col:
-    st.markdown(
-        """
-        <div class="workspace-frame">
-            <div class="workspace-header">
-                <div>
-                    <span class="workspace-title">
-                        Nova Atelier — E-commerce Homepage
-                        <span class="live-badge">LIVE AUDIT</span>
-                    </span>
-                    <div class="workspace-tags">
-                        Desktop web &nbsp;•&nbsp; 1440 px viewport &nbsp;•&nbsp; Visual hierarchy &nbsp;•&nbsp; 5 issues found
-                    </div>
-                </div>
-            </div>
+   st.markdown(
+    f"""
+    <div class="results-panel">
+        <div class="panel-label">UX Audit Results</div>
+        <div class="panel-title">{project_name}</div>
+        <div style="color:#4A6388;font-size:11px;line-height:1.5;">
+            Upload a screenshot or enter a valid website URL, then start the audit.
         </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+has_valid_source = uploaded_file is not None or valid_url(website_url)
 
+if st.button(
+    "Start UX Audit",
+    type="primary",
+    use_container_width=True,
+    disabled=not has_valid_source,
+):
+    st.session_state.audit_requested = True
     # Selección de fuente (URL o Imagen)
     source_type = st.radio(
         "",
@@ -626,14 +636,38 @@ with preview_col:
         unsafe_allow_html=True,
     )
     st.markdown("<​/div>", unsafe_allow_html=True)
+    uploaded_file = None
+website_url = ""
 
+if source_type == "Screenshot":
+    uploaded_file = st.file_uploader(
+        "Upload screenshot",
+        type=["png", "jpg", "jpeg", "webp"],
+        label_visibility="collapsed",
+    )
+else:
+    website_url = st.text_input(
+        "Website URL",
+        placeholder="https://your-website.com",
+        label_visibility="collapsed",
+    )
+
+if uploaded_file is not None:
+    project_name = uploaded_file.name.rsplit(".", 1)[0]
+    source_description = "Screenshot uploaded"
+elif website_url and valid_url(website_url):
+    project_name = urlparse(website_url).netloc.replace("www.", "")
+    source_description = "Live website URL"
+else:
+    project_name = "Untitled audit"
+    source_description = "Waiting for a screenshot or website URL"
 # --- Columna de Resultados (Derecha) ---
 with results_col:
     st.markdown(
         """
         <div class="results-panel">
             <div class="panel-label">UX Audit Results</div>
-            <div class="panel-title">Nova Atelier</div>
+            <div class="panel-title"></div>
             <div style="color:#4A6388;font-size:11px;text-align:center;padding:20px 0;">
                 No issues detected yet.<br>Run an audit to populate findings.
             </div>
