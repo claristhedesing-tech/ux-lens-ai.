@@ -537,7 +537,7 @@ div[data-testid="stButton"] > button[kind="secondary"]:hover {
             color: #E2EBF8 !important;
         }
 
-        /* Hide Streamlit elements */
+        /* Hide Streamlit default elements */
         #MainMenu {
             visibility: hidden;
         }
