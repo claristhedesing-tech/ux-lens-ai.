@@ -17,6 +17,12 @@ import streamlit as st
 from PIL import Image
 
 
+LOGO_B64 = "iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAYAAAB/HSuDAAAQAElEQVR4Aey9B6AsW1XnvXdVdZ9z78OMo5IUVCQIiCKOwMBIkAwSZUCCBHlkeOQHSE4PUHIcMgoSVAYB4yh+4xjGMIzOKEbEMDPfzHwOyLv3dHdV7e+/9jnVt8+5nU7Hqupfn1q9d+241m9X2HtVd5/E8YIABCAAAQhAAAIQgAAEIAABCECg7QQcDoDWDzEGQgACEIAABCAAAQhAAAIQgAAEHA4ADgIIQAACEIAABCAAAQhAAAIQgEDrCchAPgEgCGwQgAAEIAABCEAAAhCAAAQgAIE2EzDbcAAYBQQCEIAABCAAAQhAAAIQgAAEINBeAtEyHAARA28QgAAEIAABCEAAAhCAAAQgAIG2Eji
+...
+
+Longitud total del base64: 115632 caracteres
+✅ Base64 generated correctly
+
 # ─────────────────────────────────────────────
 # Contrast logic (self-contained)
 # ─────────────────────────────────────────────
@@ -277,23 +283,17 @@ st.markdown(
 # ─────────────────────────────────────────────
 
 with st.sidebar:
-    logo_col, text_col = st.columns([1, 4])
-
-    with logo_col:
-        st.image(
-            "https://raw.githubusercontent.com/claristhedesing-tech/ux-lens-ai/main/assets/Logo-UXLens.png",
-            width=40,
-        )
-
-    with text_col:
-        st.markdown(
-            """
-            <div style="color:#F5F9FF;font-size:18px;font-weight:800;letter-spacing:0.5px;padding-top:8px;">
+    st.markdown(
+        f"""
+        <div style="display:flex;align-items:center;gap:10px;padding-bottom:8px;">
+            <img src="data:image/png;base64,{LOGO_B64}" width="40" style="border-radius:8px;"/>
+            <span style="color:#F5F9FF;font-size:18px;font-weight:800;letter-spacing:0.5px;">
                 UX LENS
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+            </span>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     st.caption("AI-assisted design review")
     st.divider()
