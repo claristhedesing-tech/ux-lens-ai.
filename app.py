@@ -24,7 +24,7 @@ from contrast_checker import audit_element
 
 st.set_page_config(
     page_title="UX Lens AI",
-    page_icon="assets/Logo-UX-Lens.png",
+    page_icon="🔵",
     layout="wide",
 )
 
@@ -381,8 +381,24 @@ st.markdown(
 # ─────────────────────────────────────────────
 
 with st.sidebar:
-    st.image("assets/Logo-UX-Lens.png", width=48)
-    st.markdown("## UX LENS")
+    st.markdown(
+    """
+    <div style="display:flex;align-items:center;gap:10px;
+                padding-bottom:8px;">
+        <div style="width:40px;height:40px;background:#B8D4F0;
+                    border-radius:10px;display:flex;
+                    align-items:center;justify-content:center;
+                    font-size:20px;">
+            ◎
+        </div>
+        <span style="color:#F5F9FF;font-size:18px;
+                     font-weight:800;letter-spacing:0.5px;">
+            UX LENS
+        </span>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
     st.caption("AI-assisted design review")
     st.divider()
     st.markdown("**Navigation**")
