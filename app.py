@@ -8,165 +8,187 @@ visual-clarity audit prototype.
 Run:
     streamlit run app.py
 """
-import io
-import math
-import requests
-import streamlit as st
-from PIL import Image
+const { useState } = React;
 
-# ─────────────────────────────────────────────
-# Contrast logic
-# ─────────────────────────────────────────────
+const severityColor = (s) => ({ HIGH: "#EF4444", MEDIUM: "#F59E0B", LOW: "#22C55E" }[s] || "#38BDF8");
 
-def hex_to_rgb(hex_color):
-    hex_color = hex_color.lstrip("#")
-    if len(hex_color) == 3:
-        hex_color = "".join(c * 2 for c in hex_color)
-    return tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
+const findings = [
+  { title: "Fix button contrast", description: "The View details button has a 2.6:1 contrast ratio. Increase to at least 4.5.", severity: "HIGH" },
+  { title: "Improve secondary text readability", description: "Balance labels and account metadata are difficult to read on white backgrounds.", severity: "HIGH" },
+  { title: "Increase touch target size", description: "The Payments action is 28×28px. WCAG recommends at least 44×44px.", severity: "MEDIUM" },
+  { title: "Strengthen chart contrast", description: "Monthly spending bars blend into the chart background.", severity: "MEDIUM" },
+  { title: "Navigation structure is clear", description: "Bottom navigation has a consistent icon layout.", severity: "LOW" },
+];
 
+const metrics = [
+  { label: "ACCESSIBILITY", value: "62%", grade: "C", color: "#EF4444" },
+  { label: "USABILITY", value: "88%", grade: "A", color: "#22C55E" },
+  { label: "VISUAL CLARITY", value: "81%", grade: "B", color: "#F59E0B" },
+  { label: "PERFORMANCE", value: "90%", grade: "A", color: "#22C55E" },
+];
 
-def relative_luminance(rgb):
-    def channel(c):
-        c = c / 255.0
-        return c / 12.92 if c <= 0.03928 else math.pow((c + 0.055) / 1.055, 2.4)
-    r, g, b = rgb
-    return 0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b)
+function DonutChart({ score }) {
+  const r = 40, cx = 50, cy = 50;
+  const circ = 2 * Math.PI * r;
+  const dash = (score / 100) * circ;
+  return (
+    <svg viewBox="0 0 100 100" width="90" height="90">
+      <circle cx={cx} cy={cy} r={r} fill="none" stroke="#1A3A5C" strokeWidth="10" />
+      <circle cx={cx} cy={cy} r={r} fill="none" stroke="#F59E0B" strokeWidth="10"
+        strokeDasharray={`${dash} ${circ}`} strokeLinecap="round"
+        transform="rotate(-90 50 50)" />
+      <text x="50" y="46" textAnchor="middle" fill="#F5F9FF" fontSize="16" fontWeight="800">{score}%</text>
+      <text x="50" y="60" textAnchor="middle" fill="#22C55E" fontSize="9" fontWeight="700">B</text>
+    </svg>
+  );
+}
 
+function App() {
+  const [auditRun, setAuditRun] = useState(true);
+  const [activeNav, setActiveNav] = useState("audit");
 
-def contrast_ratio(hex1, hex2):
-    lum1 = relative_luminance(hex_to_rgb(hex1))
-    lum2 = relative_luminance(hex_to_rgb(hex2))
-    lighter = max(lum1, lum2)
-    darker = min(lum1, lum2)
-    return (lighter + 0.05) / (darker + 0.05)
+  const navIcons = [
+    { id: "grid", icon: "⊞" },
+    { id: "folder", icon: "⊟" },
+    { id: "audit", icon: "◉" },
+    { id: "report", icon: "≡" },
+    { id: "settings", icon: "⚙" },
+  ];
 
+  return (
+    <div style={{ display: "flex", height: "100vh", background: "#061426", color: "#E9F2FF", fontFamily: "Inter, sans-serif", fontSize: "13px" }}>
 
-def audit_element(name, text_hex, bg_hex, large_text=False):
-    ratio = round(contrast_ratio(text_hex, bg_hex), 2)
-    required = 3.0 if large_text else 4.5
-    status = "PASS" if ratio >= required else "FAIL"
-    severity = "LOW" if status == "PASS" else "HIGH"
-    wcag = "AAA" if ratio >= 7 else ("AA" if ratio >= required else "Fail")
-    action = (
-        f"{name} passes WCAG contrast requirements."
-        if status == "PASS"
-        else f"Increase contrast for {name} to at least {required}:1."
-    )
-    return {
-        "element": name,
-        "contrast_ratio": ratio,
-        "status": status,
-        "severity": severity,
-        "wcag_level": wcag,
-        "text_type": "Large text" if large_text else "Normal text",
-        "action": action,
-    }
+      {/* Left icon nav */}
+      <div style={{ width: "44px", background: "#050F1E", borderRight: "1px solid #0F2540", display: "flex", flexDirection: "column", alignItems: "center", paddingTop: "12px", gap: "6px" }}>
+        <div style={{ width: "28px", height: "28px", background: "#1A3A5C", borderRadius: "6px", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "12px" }}>
+          <span style={{ fontSize: "14px" }}>◎</span>
+        </div>
+        {navIcons.map(n => (
+          <div key={n.id} onClick={() => setActiveNav(n.id)}
+            style={{ width: "32px", height: "32px", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", fontSize: "16px",
+              background: activeNav === n.id ? "#0D2A4A" : "transparent",
+              color: activeNav === n.id ? "#268CFF" : "#4A6A8A" }}>
+            {n.icon}
+          </div>
+        ))}
+        <div style={{ marginTop: "auto", marginBottom: "12px" }}>
+          <div style={{ width: "28px", height: "28px", borderRadius: "50%", background: "#268CFF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: "700" }}>C</div>
+        </div>
+      </div>
 
+      {/* Main area */}
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
 
-# ─────────────────────────────────────────────
-# Helpers
-# ─────────────────────────────────────────────
+        {/* Top bar */}
+        <div style={{ height: "44px", background: "#061426", borderBottom: "1px solid #0F2540", display: "flex", alignItems: "center", padding: "0 16px", gap: "8px" }}>
+          <span style={{ color: "#F5F9FF", fontWeight: "800", fontSize: "14px" }}>UX LENS</span>
+          <span style={{ color: "#4A6A8A" }}>›</span>
+          <span style={{ color: "#4A6A8A" }}>Projects</span>
+          <span style={{ color: "#4A6A8A" }}>›</span>
+          <span style={{ color: "#4A6A8A" }}>NOVA ATELIER Page Web</span>
+          <span style={{ color: "#4A6A8A" }}>›</span>
+          <span style={{ color: "#E9F2FF" }}>Accessibility Audit</span>
+          <div style={{ marginLeft: "auto", display: "flex", gap: "8px", alignItems: "center" }}>
+            <div style={{ background: "#0D3320", border: "1px solid #22C55E", borderRadius: "6px", padding: "4px 10px", color: "#22C55E", fontSize: "11px", fontWeight: "700" }}>● Scan complete</div>
+            <button style={{ background: "#0A203A", border: "1px solid #2A4B6D", borderRadius: "6px", padding: "4px 10px", color: "#E9F2FF", fontSize: "11px", cursor: "pointer" }}>↑ Export report</button>
+            <button style={{ background: "#268CFF", border: "none", borderRadius: "6px", padding: "4px 12px", color: "#fff", fontSize: "11px", fontWeight: "700", cursor: "pointer" }}>Share</button>
+          </div>
+        </div>
 
-def load_image_from_url(image_url):
-    try:
-        response = requests.get(image_url, timeout=10)
-        response.raise_for_status()
-        return Image.open(io.BytesIO(response.content))
-    except Exception:
-        return None
+        {/* Content row */}
+        <div style={{ flex: 1, display: "flex", overflow: "hidden" }}>
 
-def severity_color(severity):
-    return {"HIGH": "#EF4444", "MEDIUM": "#F59E0B", "LOW": "#22C55E"}.get(severity, "#38BDF8")
+          {/* Center: preview */}
+          <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+            {/* Sub-header */}
+            <div style={{ padding: "10px 16px", borderBottom: "1px solid #0F2540", display: "flex", alignItems: "center", gap: "8px" }}>
+              <span style={{ fontWeight: "700", fontSize: "13px" }}>NOVA ATELIER — Homepage</span>
+              <span style={{ background: "#0D2A4A", border: "1px solid #268CFF", borderRadius: "4px", padding: "2px 7px", color: "#268CFF", fontSize: "10px", fontWeight: "700" }}>LIVE AUDIT</span>
+              <span style={{ background: "#0A203A", border: "1px solid #2A4B6D", borderRadius: "4px", padding: "2px 7px", color: "#7891AE", fontSize: "10px" }}>Page web</span>
+              <span style={{ background: "#0A203A", border: "1px solid #2A4B6D", borderRadius: "4px", padding: "2px 7px", color: "#7891AE", fontSize: "10px" }}>WCAG 2.1 AA</span>
+              <div style={{ marginLeft: "auto", display: "flex", gap: "8px" }}>
+                <button style={{ background: "#0A203A", border: "1px solid #2A4B6D", borderRadius: "6px", padding: "4px 10px", color: "#E9F2FF", fontSize: "11px", cursor: "pointer" }}>⊡ Snap</button>
+                <button style={{ background: "#268CFF", border: "none", borderRadius: "6px", padding: "4px 12px", color: "#fff", fontSize: "11px", fontWeight: "700", cursor: "pointer" }}>Search</button>
+              </div>
+            </div>
 
-def severity_icon(severity):
-    return {"HIGH": "●", "MEDIUM": "●", "LOW": "✓"}.get(severity, "•")
+            {/* Preview area */}
+            <div style={{ flex: 1, background: "#040D1A", display: "flex", alignItems: "center", justifyContent: "center", color: "#2A4B6D", fontSize: "13px" }}>
+              <div style={{ textAlign: "center" }}>
+                <div style={{ fontSize: "32px", marginBottom: "8px" }}>◎</div>
+                <div>Upload a screenshot to preview the interface</div>
+              </div>
+            </div>
+          </div>
 
-def build_audit_results(contrast_result=None):
-    findings = [
-        {"title": "Improve secondary text readability", "description": "Secondary labels may be difficult to read.", "severity": "HIGH"},
-        {"title": "Increase touch target size", "description": "Mobile touch targets should be at least 44 × 44 px.", "severity": "MEDIUM"},
-        {"title": "Navigation structure is clear", "description": "Consistent and recognizable layout pattern.", "severity": "LOW"},
-    ]
-    if contrast_result:
-        ratio = contrast_result["contrast_ratio"]
-        if contrast_result["status"] == "FAIL":
-            findings.insert(0, {"title": f"Fix contrast in {contrast_result['element']}", "description": f"Has a {ratio}:1 ratio. Increase to 4.5:1.", "severity": "HIGH"})
-    return findings
+          {/* Right panel: audit results */}
+          <div style={{ width: "280px", background: "#071B32", borderLeft: "1px solid #0F2540", display: "flex", flexDirection: "column", overflow: "hidden" }}>
+            <div style={{ padding: "14px 14px 0 14px" }}>
+              <div style={{ color: "#7891AE", fontSize: "9px", fontWeight: "800", letterSpacing: "1px", marginBottom: "4px" }}>UX AUDIT RESULTS</div>
+              <div style={{ color: "#F5F9FF", fontWeight: "800", fontSize: "14px", marginBottom: "12px" }}>Finova Mobile App</div>
 
-# ─────────────────────────────────────────────
-# Page config & Styles
-# ─────────────────────────────────────────────
+              {/* Score donut */}
+              <div style={{ background: "#0A203A", border: "1px solid #1A3A5C", borderRadius: "10px", padding: "12px", marginBottom: "10px", display: "flex", alignItems: "center", gap: "12px" }}>
+                <DonutChart score={78} />
+                <div>
+                  <div style={{ color: "#F5F9FF", fontWeight: "800", fontSize: "16px" }}>Good foundation</div>
+                  <div style={{ color: "#7891AE", fontSize: "10px", marginTop: "4px" }}>Accessibility needs attention</div>
+                </div>
+              </div>
 
-st.set_page_config(page_title="UX Lens AI", page_icon="🔵", layout="wide")
+              {/* Metrics grid */}
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px", marginBottom: "10px" }}>
+                {metrics.map(m => (
+                  <div key={m.label} style={{ background: "#0A203A", border: "1px solid #173451", borderRadius: "8px", padding: "8px 10px" }}>
+                    <div style={{ color: "#7891AE", fontSize: "8px", fontWeight: "800", letterSpacing: "0.5px", marginBottom: "4px" }}>{m.label}</div>
+                    <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
+                      <span style={{ color: m.color, fontSize: "20px", fontWeight: "800" }}>{m.value}</span>
+                      <span style={{ background: m.color, color: "#061426", borderRadius: "4px", padding: "1px 5px", fontSize: "9px", fontWeight: "800" }}>{m.grade}</span>
+                    </div>
+                    <div style={{ height: "2px", background: m.color, borderRadius: "2px", marginTop: "6px", opacity: 0.7 }} />
+                  </div>
+                ))}
+              </div>
 
-st.markdown(
-    """
-    <style>
-        .stApp { background:#061426; color:#E9F2FF; }
-        [data-testid="stSidebar"] { background:#081B33; border-right:1px solid #173451; }
-        .stButton > button { border-radius: 8px !important; font-weight: 700 !important; background: #0A203A !important; color: #E9F2FF !important; border: 1px solid #2A4B6D !important; }
-        .stButton > button[kind="primary"] { background: #268CFF !important; border: 1px solid #3C9BFF !important; color: #FFFFFF !important; }
-        .score-card { background:#0A203A; border:1px solid #1A4265; border-radius:10px; padding:16px; margin-bottom:12px; }
-        .score-number { color:#F5F9FF; font-size:35px; font-weight:800; }
-        .finding-card { display:flex; gap:10px; background:#0A203A; border:1px solid #173451; border-radius:8px; padding:12px; margin-bottom:8px; }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+              {/* Findings header */}
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+                <span style={{ color: "#F5F9FF", fontWeight: "700", fontSize: "12px" }}>Actionable Insights</span>
+                <span style={{ background: "#268CFF22", border: "1px solid #268CFF55", color: "#268CFF", borderRadius: "999px", padding: "1px 7px", fontSize: "9px", fontWeight: "800" }}>{findings.length} items</span>
+              </div>
+            </div>
 
-# ─────────────────────────────────────────────
-# Sidebar con el Logo Corregido
-# ─────────────────────────────────────────────
+            {/* Findings list */}
+            <div style={{ flex: 1, overflowY: "auto", padding: "0 14px 14px 14px" }}>
+              {findings.map((f, i) => {
+                const color = severityColor(f.severity);
+                return (
+                  <div key={i} style={{ background: "#0A203A", border: "1px solid #173451", borderRadius: "8px", padding: "10px", marginBottom: "6px", cursor: "pointer" }}>
+                    <div style={{ display: "flex", alignItems: "flex-start", gap: "8px" }}>
+                      <span style={{ color, fontSize: "12px", marginTop: "1px" }}>◉</span>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ color: "#E9F2FF", fontWeight: "700", fontSize: "11px", marginBottom: "3px" }}>{f.title}</div>
+                        <div style={{ color: "#7891AE", fontSize: "10px", lineHeight: "1.4", marginBottom: "6px" }}>{f.description}</div>
+                        <span style={{ background: color + "22", color, border: `1px solid ${color}55`, borderRadius: "999px", padding: "2px 7px", fontSize: "9px", fontWeight: "800" }}>{f.severity}</span>
+                      </div>
+                      <span style={{ color: "#4A6A8A", fontSize: "12px" }}>›</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
 
-with st.sidebar:
-    logo_col, text_col = st.columns([1, 4])
-    with logo_col:
-        # Usamos una URL de placeholder que funciona siempre para el prototipo
-        st.image("https://cdn-icons-png.flaticon.com/512/8136/8136031.png", width=40)
-    with text_col:
-        st.markdown('<div style="color:#F5F9FF;font-size:18px;font-weight:800;padding-top:8px;">UX LENS</div>', unsafe_allow_html=True)
-    
-    st.caption("AI-assisted design review")
-    st.divider()
-    st.markdown("**Navigation**")
-    st.caption("▦ Dashboard")
-    st.caption("◉ Live audit")
-    st.divider()
-    st.success("AI engine online")
+            {/* Bottom actions */}
+            <div style={{ padding: "10px 14px", borderTop: "1px solid #0F2540" }}>
+              <div style={{ color: "#7891AE", fontSize: "9px", marginBottom: "8px" }}>⏱ Last scan: Today, 9:41 AM</div>
+              <div style={{ display: "flex", gap: "6px" }}>
+                <button style={{ flex: 1, background: "#0A203A", border: "1px solid #2A4B6D", borderRadius: "6px", padding: "7px", color: "#E9F2FF", fontSize: "10px", fontWeight: "700", cursor: "pointer" }}>View full report</button>
+                <button style={{ flex: 1, background: "#268CFF", border: "none", borderRadius: "6px", padding: "7px", color: "#fff", fontSize: "10px", fontWeight: "700", cursor: "pointer" }}>Apply safe fixes</button>
+              </div>
+            </div>
+          </div>
 
-# ─────────────────────────────────────────────
-# Main content
-# ─────────────────────────────────────────────
-
-st.title("UX Lens AI Audit")
-
-col_input, col_preview = st.columns([2, 3])
-
-with col_input:
-    st.markdown("### 1. New Audit")
-    project_name = st.text_input("Project Name", "New Audit Project")
-    file = st.file_uploader("Upload screenshot", type=["png", "jpg", "webp"])
-    run_audit = st.button("Run full UX audit", type="primary", use_container_width=True)
-
-with col_preview:
-    st.markdown("### 2. Interface Preview")
-    if file:
-        st.image(file, use_container_width=True)
-    else:
-        st.info("Upload an image to see the preview here.")
-
-if run_audit:
-    st.divider()
-    res_left, res_right = st.columns([1, 2])
-    
-    with res_left:
-        st.markdown(f'<div class="score-card"><div style="color:#7891AE;font-size:10px;">OVERALL SCORE</div><div class="score-number">82%</div></div>', unsafe_allow_html=True)
-        st.metric("Accessibility", "72%", "-2%")
-        st.metric("Usability", "88%", "+5%")
-    
-    with res_right:
-        st.markdown("**Actionable Insights**")
-        findings = build_audit_results()
-        for f in findings:
-            color = severity_color(f["severity"])
-            st.markdown(f'<div class="finding-card"><div style="color:{color};">●</div><div><div style="font-weight:700;">{f["title"]}</div><div style="font-size:11px;color:#7891AE;">{f["description"]}</div></div></div>', unsafe_allow_html=True)
+        </div>
+      </div>
+    </div>
+  );
+}
