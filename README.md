@@ -1,6 +1,7 @@
 # UX Lens AI
 
-UX Lens AI is a specialized tool designed to perform rapid, AI-driven user experience audits. By analyzing screenshots or design files, it identifies usability friction points, accessibility issues, and visual hierarchy opportunities, providing actionable recommendations for designers and developers.
+## Summary
+UX Lens AI is a specialized tool designed to perform rapid, AI-driven user experience audits. It analyzes screenshots to identify usability friction points and accessibility issues, providing designers with automated, actionable recommendations based on proven design heuristics.
 
 ![UX Lens Header](assets/header-image.png)
 
@@ -43,6 +44,8 @@ Checks for visual hierarchy and conversion-focused design.
 - **Version Control:** GitHub.
 
 ### Project Structure
+The source code is organized to maintain a clear separation between components and logic. You can explore the full implementation in the `src/` directory.
+
 ![Project Structure](assets/project-structure.png)
 
 ### Core Interface Logic
@@ -67,3 +70,6 @@ The user can also choose the areas that should be prioritized during the audit:
 
 ### Acknowledgments
 Thanks to the UX design community for providing the heuristic frameworks that power the logic of this tool.
+
+### License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
